@@ -1,21 +1,21 @@
 _base_ = [
     '_base_/models/retinanet_r50_fpn.py',
     '_base_/datasets/coco_detection.py',
-    '_base_/schedules/schedule_1x.py',
+    '_base_/schedules/schedule_3x.py',
     '_base_/default_runtime.py'
 ]
+# LastLevelP6P7(256,256)
 model = dict(
-    # pretrained='pretrained/pvt_tiny.pth',
-    pretrained='https://github.com/whai362/PVT/releases/download/v2/pvt_tiny.pth',
-    # pretrained=None,
+    pretrained=None,
     backbone=dict(
-        type='pvt_tiny',
+        type='swin_v2_tiny',
         style='pytorch'),
     neck=dict(
         type='FPN',
-        in_channels=[64, 128, 320, 512],
+        in_channels=[192, 384, 768],
         out_channels=256,
-        start_level=1,
+        start_level=0,
+        # add_extra_convs='on_input',
         add_extra_convs='on_input',
         num_outs=5))
 # optimizer

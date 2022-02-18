@@ -19,6 +19,8 @@ from mmdet.models import build_detector
 from mmdet.utils import collect_env, get_root_logger
 import pvt
 import pvt_v2
+import models.swin
+import models.swin_v2
 import mmcv_custom.runner.epoch_based_runner
 import mmcv_custom.runner.optimizer
 
