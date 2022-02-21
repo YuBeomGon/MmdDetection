@@ -13,7 +13,7 @@ from timm.data import Mixup
 from timm.utils import accuracy, ModelEma
 
 from losses import DistillationLoss
-import utils
+import _utils as utils
 
 
 def train_one_epoch(model: torch.nn.Module, criterion: DistillationLoss,
@@ -26,7 +26,7 @@ def train_one_epoch(model: torch.nn.Module, criterion: DistillationLoss,
     metric_logger = utils.MetricLogger(delimiter="  ")
     metric_logger.add_meter('lr', utils.SmoothedValue(window_size=1, fmt='{value:.6f}'))
     header = 'Epoch: [{}]'.format(epoch)
-    print_freq = 10
+    print_freq = 500
 
     for samples, targets in metric_logger.log_every(data_loader, print_freq, header):
         samples = samples.to(device, non_blocking=True)
@@ -77,7 +77,7 @@ def evaluate(data_loader, model, device):
     # switch to evaluation mode
     model.eval()
 
-    for images, target in metric_logger.log_every(data_loader, 10, header):
+    for images, target in metric_logger.log_every(data_loader, 100, header):
         images = images.to(device, non_blocking=True)
         target = target.to(device, non_blocking=True)
 
