@@ -6,15 +6,16 @@ _base_ = [
 ]
 
 #pretrained = 'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth'  # noqa
-pretrained = None
+# use absolute path
+pretrained = '/home/beomgon/pytorch/scl/PVT/classification/checkpoints/swin_mlp_tiny/checkpoint.pth'
 
 model = dict(
     backbone=dict(
         type='swin_mlp_tiny',
         style='pytorch',
         out_indices=(1, 2, 3),
-        # init_cfg=dict(type='Pretrained', checkpoint=pretrained),
-        # convert_weights=True,
+        init_cfg=dict(type='Pretrained', checkpoint=pretrained),
+        convert_weights=True,
     ),
     neck=dict(
         type='FPN',
