@@ -17,10 +17,11 @@ from mmdet_custom.apis.train import train_detector
 from mmdet.datasets import build_dataset
 from mmdet.models import build_detector
 from mmdet.utils import collect_env, get_root_logger
-import pvt
-import pvt_v2
+import models.pvt
+import models.pvt_v2
 import models.swin
 import models.swin_v2
+import models.swin_mlp
 import mmcv_custom.runner.epoch_based_runner
 import mmcv_custom.runner.optimizer
 
